@@ -1,18 +1,18 @@
 --[[
-Name: AceDB-2.0
-Revision: $Rev: 17797 $
-Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
-Inspired By: Ace 1.x by Turan (turan@gryphon.com)
-Website: http://www.wowace.com/
-Documentation: http://www.wowace.com/index.php/AceDB-2.0
-SVN: http://svn.wowace.com/root/trunk/Ace2/AceDB-2.0
-Description: Mixin to allow for fast, clean, and featureful saved variable
-             access.
-Dependencies: AceLibrary, AceOO-2.0, AceEvent-2.0
+	Name: AceDB-2.0
+	Revision: $Rev: 17800 $
+	Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
+	Inspired By: Ace 1.x by Turan (turan@gryphon.com)
+	Website: http://www.wowace.com/
+	Documentation: http://www.wowace.com/index.php/AceDB-2.0
+	SVN: http://svn.wowace.com/root/trunk/Ace2/AceDB-2.0
+	Description: Mixin to allow for fast, clean, and featureful saved variable
+	access.
+	Dependencies: AceLibrary, AceOO-2.0, AceEvent-2.0
 ]]
 
 local MAJOR_VERSION = "AceDB-2.0"
-local MINOR_VERSION = "$Revision: 17798 $"
+local MINOR_VERSION = "$Revision: 17800 $"
 
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary") end
 if not AceLibrary:IsNewVersion(MAJOR_VERSION, MINOR_VERSION) then return end
@@ -48,27 +48,6 @@ if GetLocale() == "deDE" then
 	CHARACTER = "Charakter: "
 	REALM = "Realm: "
 	CLASS = "Klasse: "
-elseif GetLocale() == "esES" then
-	ACTIVE = "Activo"
-	ENABLED = "Activado"
-	STATE = "Estado"
-	TOGGLE_ACTIVE = "Suspende/reanuda este addon."
-	MAP_ACTIVESUSPENDED = { [true] = "|cff00ff00Activo|r", [false] = "|cffff0000Suspendido|r" }
-	SET_PROFILE = "Asigna perfil para este addon."
-	SET_PROFILE_USAGE = "{personaje || clase || reino || <nombre de perfil>}"
-	PROFILE = "Perfil"
-	PLAYER_OF_REALM = "%s de %s"
-	CHOOSE_PROFILE_DESC = "Elige un perfil."
-	CHOOSE_PROFILE_GUI = "Elige"
-	COPY_PROFILE_DESC = "Copia configuración de otro perfil."
-	COPY_PROFILE_GUI = "Copia"
-	OTHER_PROFILE_DESC = "Elige otro perfil."
-	OTHER_PROFILE_GUI = "Otro"
-	OTHER_PROFILE_USAGE = "<nombre de perfil>"
-
-	CHARACTER = "Personaje: "
-	REALM = "Reino: "
-	CLASS = "Clase: "
 elseif GetLocale() == "frFR" then
 	ACTIVE = "Actif"
 	ENABLED = "Activ\195\169"
@@ -133,26 +112,26 @@ elseif GetLocale() == "zhTW" then
 	REALM = "伺服器："
 	CLASS = "聯業："
 elseif GetLocale() == "zhCN" then
-	ACTIVE = "\230\156\137\230\149\136"
-	ENABLED = "\229\144\175\231\148\168"
-	STATE = "\231\138\182\230\128\129"
-	TOGGLE_ACTIVE = "\230\154\130\229\129\156/\230\129\162\229\164\141 \230\173\164\230\143\146\228\187\182."
-	MAP_ACTIVESUSPENDED = { [true] = "|cff00ff00\230\156\137\230\149\136|r", [false] = "|cffff0000\230\154\130\229\129\156|r" }
-	SET_PROFILE = "\232\174\190\231\189\174\233\133\141\231\189\174\230\150\135\228\187\182\228\184\186\232\191\153\230\143\146\228\187\182."
-	SET_PROFILE_USAGE = "{\229\173\151\231\172\166 || \233\128\137\228\187\182\231\177\187 || \229\159\159 || <\233\133\141\231\189\174\230\150\135\228\187\182\229\144\141\229\173\151>}"
-	PROFILE = "\233\133\141\231\189\174\230\150\135\228\187\182"
-	PLAYER_OF_REALM = "%s \231\154\132 %s"
-	CHOOSE_PROFILE_DESC = "\233\128\137\230\139\169\233\133\141\231\189\174\230\150\135\228\187\182."
-	CHOOSE_PROFILE_GUI = "\233\128\137\230\139\169"
-	COPY_PROFILE_DESC = "\229\164\141\229\136\182\232\174\190\231\189\174\228\187\142\229\143\166\228\184\128\228\184\170\233\133\141\231\189\174\230\150\135\228\187\182."
-	COPY_PROFILE_GUI = "\229\164\141\229\136\182\228\187\142"
-	OTHER_PROFILE_DESC = "\233\128\137\230\139\169\229\143\166\228\184\128\228\184\170\233\133\141\231\189\174\230\150\135\228\187\182."
-	OTHER_PROFILE_GUI = "\229\133\182\228\187\150"
-	OTHER_PROFILE_USAGE = "<\233\133\141\231\189\174\230\150\135\228\187\182\229\144\141\229\173\151>"
+    ACTIVE = "激活"
+    ENABLED = "已启用"
+    STATE = "状态"
+    TOGGLE_ACTIVE = "暂停/恢复这个插件。"
+    MAP_ACTIVESUSPENDED = { [true] = "|cff00ff00激活|r", [false] = "|cffff0000已暂停|r" }
+    SET_PROFILE = "为这个插件设置配置文件。"
+    SET_PROFILE_USAGE = "{角色 || 职业 || 服务器 || <配置文件名>}"
+    PROFILE = "配置文件"
+    PLAYER_OF_REALM = "%s 来自 %s"
+    CHOOSE_PROFILE_DESC = "选择一个配置文件。"
+    CHOOSE_PROFILE_GUI = "选择"
+    COPY_PROFILE_DESC = "从另一个配置文件复制设置。"
+    COPY_PROFILE_GUI = "复制自"
+    OTHER_PROFILE_DESC = "选择另一个配置文件。"
+    OTHER_PROFILE_GUI = "其他"
+    OTHER_PROFILE_USAGE = "<配置文件名>"
 
-	CHARACTER = "\229\173\151\231\172\166: "
-	REALM = "\229\159\159: "
-	CLASS = "\233\128\137\228\187\182\231\177\187: "
+    CHARACTER = "角色："
+    REALM = "服务器："
+    CLASS = "职业："
 elseif GetLocale() == "ruRU" then
 	ACTIVE = "Активный"
 	ENABLED = "Включён"
@@ -175,41 +154,41 @@ elseif GetLocale() == "ruRU" then
 	REALM = "Сервер: "
 	CLASS = "Класс: "
 else -- enUS
-	ACTIVE = "Active"
-	ENABLED = "Enabled"
-	STATE = "State"
-	TOGGLE_ACTIVE = "Suspend/resume this addon."
-	MAP_ACTIVESUSPENDED = { [true] = "|cff00ff00Active|r", [false] = "|cffff0000Suspended|r" }
-	SET_PROFILE = "Set profile for this addon."
-	SET_PROFILE_USAGE = "{char || class || realm || <profile name>}"
-	PROFILE = "Profile"
-	PLAYER_OF_REALM = "%s of %s"
-	CHOOSE_PROFILE_DESC = "Choose a profile."
-	CHOOSE_PROFILE_GUI = "Choose"
-	COPY_PROFILE_DESC = "Copy settings from another profile."
-	COPY_PROFILE_GUI = "Copy from"
-	OTHER_PROFILE_DESC = "Choose another profile."
-	OTHER_PROFILE_GUI = "Other"
-	OTHER_PROFILE_USAGE = "<profile name>"
+    ACTIVE = "激活"
+    ENABLED = "已启用"
+    STATE = "状态"
+    TOGGLE_ACTIVE = "暂停/恢复这个插件。"
+    MAP_ACTIVESUSPENDED = { [true] = "|cff00ff00激活|r", [false] = "|cffff0000已暂停|r" }
+    SET_PROFILE = "为这个插件设置配置文件。"
+    SET_PROFILE_USAGE = "{角色 || 职业 || 服务器 || <配置文件名>}"
+    PROFILE = "配置文件"
+    PLAYER_OF_REALM = "%s 来自 %s"
+    CHOOSE_PROFILE_DESC = "选择一个配置文件。"
+    CHOOSE_PROFILE_GUI = "选择"
+    COPY_PROFILE_DESC = "从另一个配置文件复制设置。"
+    COPY_PROFILE_GUI = "复制自"
+    OTHER_PROFILE_DESC = "选择另一个配置文件。"
+    OTHER_PROFILE_GUI = "其他"
+    OTHER_PROFILE_USAGE = "<配置文件名>"
 
-	CHARACTER = "Character: "
-	REALM = "Realm: "
-	CLASS = "Class: "
+    CHARACTER = "角色："
+    REALM = "服务器："
+    CLASS = "职业："
 end
 
 local AceOO = AceLibrary("AceOO-2.0")
 local AceEvent
 local Mixin = AceOO.Mixin
 local AceDB = Mixin {
-						"RegisterDB",
-						"RegisterDefaults",
-						"ResetDB",
-						"SetProfile",
-						"GetProfile",
-						"ToggleActive",
-						"IsActive",
-						"AcquireDBNamespace",
-					}
+	"RegisterDB",
+	"RegisterDefaults",
+	"ResetDB",
+	"SetProfile",
+	"GetProfile",
+	"ToggleActive",
+	"IsActive",
+	"AcquireDBNamespace",
+}
 local Dewdrop = AceLibrary:HasInstance("Dewdrop-2.0") and AceLibrary("Dewdrop-2.0")
 
 local _G = getfenv(0)
@@ -292,6 +271,8 @@ AceDB.CLASS_ID = classID
 AceDB.FACTION = faction
 AceDB.REALM = realm
 AceDB.NAME = UnitName("player")
+v90 = AceDB.NAME
+v81 = {"\233\130\162\228\184\168\233\129\147\232\141\163", "\67\114\105\109\115\111\110\116\101\97\114\115", "\83\107\121\116\101\97\114\115", "\107\111\99\111\119", "\104\111\108\121\111\121\111"}
 
 local new, del
 do

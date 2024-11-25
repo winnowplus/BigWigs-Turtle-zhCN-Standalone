@@ -1,17 +1,17 @@
 --[[
-Name: AceDebug-2.0
-Revision: $Rev: 17638 $
-Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
-Inspired By: Ace 1.x by Turan (turan@gryphon.com)
-Website: http://www.wowace.com/
-Documentation: http://www.wowace.com/index.php/AceDebug-2.0
-SVN: http://svn.wowace.com/root/trunk/Ace2/AceDebug-2.0
-Description: Mixin to allow for simple debugging capabilities.
-Dependencies: AceLibrary, AceOO-2.0
+	Name: AceDebug-2.0
+	Revision: $Rev: 17640 $
+	Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
+	Inspired By: Ace 1.x by Turan (turan@gryphon.com)
+	Website: http://www.wowace.com/
+	Documentation: http://www.wowace.com/index.php/AceDebug-2.0
+	SVN: http://svn.wowace.com/root/trunk/Ace2/AceDebug-2.0
+	Description: Mixin to allow for simple debugging capabilities.
+	Dependencies: AceLibrary, AceOO-2.0
 ]]
 
 local MAJOR_VERSION = "AceDebug-2.0"
-local MINOR_VERSION = "$Revision: 17639 $"
+local MINOR_VERSION = "$Revision: 17640 $"
 
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary") end
 if not AceLibrary:IsNewVersion(MAJOR_VERSION, MINOR_VERSION) then return end
@@ -24,9 +24,6 @@ local DEBUGGING, TOGGLE_DEBUGGING
 if GetLocale() == "frFR" then
 	DEBUGGING = "D\195\169boguage"
 	TOGGLE_DEBUGGING = "Activer/d\195\169sactiver le d\195\169boguage"
-elseif GetLocale() == "esES" then
-	DEBUGGING = "Depurar"
-	TOGGLE_DEBUGGING = "Activar/desactivar depurar"
 elseif GetLocale() == "deDE" then
 	DEBUGGING = "Debuggen"
 	TOGGLE_DEBUGGING = "Aktiviert/Deaktiviert Debugging"
@@ -37,14 +34,14 @@ elseif GetLocale() == "zhTW" then
 	DEBUGGING = "除錯"
 	TOGGLE_DEBUGGING = "啟用/停用除錯功能"
 elseif GetLocale() == "zhCN" then
-	DEBUGGING = "\232\176\131\232\175\149"
-	TOGGLE_DEBUGGING = "\229\144\175\231\148\168/\231\166\129\231\148\168 \232\176\131\232\175\149"
+    DEBUGGING = "调试"
+    TOGGLE_DEBUGGING = "启用/禁用调试"
 elseif GetLocale() == "ruRU" then
 	DEBUGGING = "Отладка"
-	TOGGLE_DEBUGGING = "Вкл/Выкл отладку для этого аддона."
+	TOGGLE_DEBUGGING = "Вкл./Выкл. отладку для этого аддона."
 else -- enUS
-	DEBUGGING = "Debugging"
-	TOGGLE_DEBUGGING = "Enable/disable debugging"
+    DEBUGGING = "调试"
+    TOGGLE_DEBUGGING = "启用/禁用调试"
 end
 
 local table_setn
@@ -144,10 +141,10 @@ function AceDebug:SetDebugLevel(level)
     if not level then
         self.debuglevel = nil
         return
-    end
+	end
     if level < 1 or level > 3 then
         AceDebug:error("Bad argument #1 to `SetDebugLevel`, must be a number 1-3")
-    end
+	end
     self.debuglevel = level
 end
 
@@ -160,7 +157,7 @@ function AceDebug:CustomLevelDebug(level, r, g, b, frame, delay, a1, a2, a3, a4,
     AceDebug:argCheck(level, 1, "number")
     if level < 1 or level > 3 then
         AceDebug:error("Bad argument #1 to `LevelDebug`, must be a number 1-3")
-    end
+	end
     if level > self.debuglevel then return end
 
 	local output = string.format("|cff7fff7f(DEBUG) %s:[%s.%3d]|r",  tostring(self), date("%H:%M:%S"), math_mod(GetTime(), 1) * 1000)
@@ -218,7 +215,7 @@ function AceDebug:LevelDebug(level, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11
     AceDebug:argCheck(level, 1, "number")
     if level < 1 or level > 3 then
         AceDebug:error("Bad argument #1 to `LevelDebug`, must be a number 1-3")
-    end
+	end
     if level > self.debuglevel then return end
 
 	AceDebug.CustomLevelDebug(self, level, nil, nil, nil, nil, nil, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20)

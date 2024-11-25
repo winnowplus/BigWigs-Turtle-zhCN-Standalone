@@ -11,7 +11,7 @@ Dependencies: AceLibrary, AceOO-2.0, AceEvent-2.0, (optional) AceConsole-2.0
 ]]
 
 local MAJOR_VERSION = "AceAddon-2.0"
-local MINOR_VERSION = "$Revision: 17958 $"
+local MINOR_VERSION = "$Revision: 17957 $"
 
 -- This ensures the code is only executed if the libary doesn't already exist, or is a newer version
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary.") end
@@ -40,7 +40,7 @@ if GetLocale() == "deDE" then
 	WEBSITE = "Webseite"
 	CREDITS = "Credits" -- fix
 	COMMANDS = "Commands"
-	
+		 
 	ABOUT = "\195\188ber"
 	PRINT_ADDON_INFO = "Gibt Addondaten aus"
 
@@ -52,7 +52,7 @@ if GetLocale() == "deDE" then
 		["Buffs"] = "Buffs",
 		["Chat/Communication"] = "Chat/Kommunikation",
 		["Druid"] = "Druide",
-		["Hunter"] = "J�ger",
+		["Hunter"] = "Jäger",
 		["Mage"] = "Magier",
 		["Paladin"] = "Paladin",
 		["Priest"] = "Priester",
@@ -79,57 +79,6 @@ if GetLocale() == "deDE" then
 		["Raid"] = "Schlachtzug",
 		["Tradeskill"] = "Handelsf\195\164higkeit",
 		["UnitFrame"] = "UnitFrame",
-	}
-elseif GetLocale() == "esES" then
-	STANDBY = "|cffff5050(Espera)|r"
-	
-	TITLE = "T\195\173tulo"
-	NOTES = "Notas"
-	VERSION = "Versi\195\179n"
-	AUTHOR = "Autor"
-	DATE = "Fecha"
-	CATEGORY = "Categor\195\173a"
-	EMAIL = "E-mail"
-	WEBSITE = "Sitio de Web"
-	
-	ABOUT = "Sobre"
-	PRINT_ADDON_INFO = "Publica informaci\195\179n sobre addon"
-	
-	CATEGORIES = {
-		["Action Bars"] = "Barras de Acci\195\179n",
-		["Auction"] = "Subasta",
-		["Audio"] = "Audio",
-		["Battlegrounds/PvP"] = "Campos de Batalla/JcJ",
-		["Buffs"] = "Buffs",
-		["Chat/Communication"] = "Chat/Communicaci\195\179n",
-		["Druid"] = "Druida",
-		["Hunter"] = "Cazador",
-		["Mage"] = "Mago",
-		["Paladin"] = "Palad\195\173n",
-		["Priest"] = "Sacerdote",
-		["Rogue"] = "P\195\173caro",
-		["Shaman"] = "Cham\195\161n",
-		["Warlock"] = "Brujo",
-		["Warrior"] = "Guerrero",
-		["Healer"] = "Sanador",
-		["Tank"] = "Tanque",
-		["Caster"] = "Hechicero",
-		["Combat"] = "Combate",
-		["Compilations"] = "Compilaciones",
-		["Data Export"] = "Exporta de Datos",
-		["Development Tools"] = "Herramientas de Desarrollo",
-		["Guild"] = "Hermandad",
-		["Frame Modification"] = "Modificaci\195\179n del marco",
-		["Interface Enhancements"] = "Mejora de Interfaz",
-		["Inventory"] = "Inventario",
-		["Library"] = "Biblioteca",
-		["Map"] = "Mapa",
-		["Mail"] = "Correo",
-		["Miscellaneous"] = "Diverso",
-		["Quest"] = "Misi\195\179n",
-		["Raid"] = "Banda",
-		["Tradeskill"] = "Habilidad de Comercio", 
-		["UnitFrame"] = "Marco de Unidad", 
 	}
 elseif GetLocale() == "frFR" then
 	STANDBY = "|cffff5050(attente)|r"
@@ -291,57 +240,57 @@ elseif GetLocale() == "zhTW" then
 		["UnitFrame"] = "單位框架",
 	}
 elseif GetLocale() == "zhCN" then
-	STANDBY = "|cffff5050(\230\154\130\230\140\130)|r"
+	STANDBY = "|cffff5050(暂挂)|r"
 	
-	TITLE = "\230\160\135\233\162\152"
-	NOTES = "\233\153\132\230\179\168"
-	VERSION = "\231\137\136\230\156\172"
-	AUTHOR = "\228\189\156\232\128\133"
-	DATE = "\230\151\165\230\156\159"
-	CATEGORY = "\229\136\134\231\177\187"
-	EMAIL = "\231\148\181\229\173\144\233\130\174\228\187\182"
-	WEBSITE = "\231\189\145\231\171\153"
-	CREDITS = "Credits" -- fix
-	COMMANDS = "Commands"
+	TITLE = "标题"
+	NOTES = "附注"
+	VERSION = "版本"
+	AUTHOR = "作者"
+	DATE = "日期"
+	CATEGORY = "分类"
+	EMAIL = "电子邮件"
+	WEBSITE = "网站"
+	CREDITS = "贡献" -- fix
+	COMMANDS = "命令"
 	
-	ABOUT = "\229\133\179\228\186\142"
-	PRINT_ADDON_INFO = "\229\141\176\229\136\151\229\135\186\230\143\146\228\187\182\228\191\161\230\129\175"
+	ABOUT = "关于"
+	PRINT_ADDON_INFO = "打印插件信息"
 	
 	CATEGORIES = {
-		["Action Bars"] = "\229\138\168\228\189\156\230\157\161",
-		["Auction"] = "\230\139\141\229\141\150",
-		["Audio"] = "\233\159\179\233\162\145",
-		["Battlegrounds/PvP"] = "\230\136\152\229\156\186/PvP",
-		["Buffs"] = "\229\162\158\231\155\138\233\173\148\230\179\149",
-		["Chat/Communication"] = "\232\129\138\229\164\169/\228\186\164\230\181\129",
-		["Druid"] = "\229\190\183\233\178\129\228\188\138",
-		["Hunter"] = "\231\140\142\228\186\186",
-		["Mage"] = "\230\179\149\229\184\136",
-		["Paladin"] = "\229\156\163\233\170\145\229\163\171",
-		["Priest"] = "\231\137\167\229\184\136",
-		["Rogue"] = "\231\155\151\232\180\188",
-		["Shaman"] = "\232\144\168\230\187\161\231\165\173\229\143\184",
-		["Warlock"] = "\230\156\175\229\163\171",
-		["Warrior"] = "\230\136\152\229\163\171",
---		["Healer"] = "\230\178\187\231\150\151\228\191\157\233\154\156",
---		["Tank"] = "\232\191\145\230\136\152\230\142\167\229\136\182",
---		["Caster"] = "\232\191\156\231\168\139\232\190\147\229\135\186",
-		["Combat"] = "\230\136\152\230\150\151",
-		["Compilations"] = "\231\188\150\232\175\145",
-		["Data Export"] = "\230\149\176\230\141\174\229\175\188\229\135\186",
-		["Development Tools"] = "\229\188\128\229\143\145\229\183\165\229\133\183",
-		["Guild"] = "\229\133\172\228\188\154",
-		["Frame Modification"] = "\230\161\134\230\158\182\228\191\174\230\148\185",
-		["Interface Enhancements"] = "\231\149\140\233\157\162\229\162\158\229\188\186",
-		["Inventory"] = "\232\131\140\229\140\133",
-		["Library"] = "\229\186\147",
-		["Map"] = "\229\156\176\229\155\190",
-		["Mail"] = "\233\130\174\228\187\182",
-		["Miscellaneous"] = "\230\157\130\233\161\185",
-		["Quest"] = "\228\187\187\229\138\161",
-		["Raid"] = "\229\155\162\233\152\159",
-		["Tradeskill"] = "\229\149\134\228\184\154\230\138\128\232\131\189",
-		["UnitFrame"] = "\229\164\180\229\131\143\230\161\134\230\158\182",
+		["Action Bars"] = "动作条",
+		["Auction"] = "拍卖",
+		["Audio"] = "音频",
+		["Battlegrounds/PvP"] = "战场/PvP",
+		["Buffs"] = "增益魔法",
+		["Chat/Communication"] = "聊天/交流",
+		["Druid"] = "德鲁伊",
+		["Hunter"] = "猎人",
+		["Mage"] = "法师",
+		["Paladin"] = "圣骑士",
+		["Priest"] = "牧师",
+		["Rogue"] = "盗贼",
+		["Shaman"] = "萨满祭司",
+		["Warlock"] = "术士",
+		["Warrior"] = "战士",
+		["Healer"] = "治疗保障",
+		["Tank"] = "近战控制",
+		["Caster"] = "远程输出",
+		["Combat"] = "战斗",
+		["Compilations"] = "编译",
+		["Data Export"] = "数据导出",
+		["Development Tools"] = "开发工具",
+		["Guild"] = "公会",
+		["Frame Modification"] = "框架修改",
+		["Interface Enhancements"] = "界面增强",
+		["Inventory"] = "背包",
+		["Library"] = "库",
+		["Map"] = "地图",
+		["Mail"] = "邮件",
+		["Miscellaneous"] = "杂项",
+		["Quest"] = "任务",
+		["Raid"] = "团队",
+		["Tradeskill"] = "商业技能",
+		["UnitFrame"] = "头像框架",
 	}
 elseif GetLocale() == "ruRU" then
 	STANDBY = "|cffff5050(в режиме ожидания)|r"
@@ -396,7 +345,58 @@ elseif GetLocale() == "ruRU" then
 		["Tradeskill"] = "Умения",
 		["UnitFrame"] = "Фреймы персонажей",
 	}
-	else -- enUS
+elseif GetLocale() == "esES" then
+	STANDBY = "|cffff5050(Espera)|r"
+	
+	TITLE = "T\195\173tulo"
+	NOTES = "Notas"
+	VERSION = "Versi\195\179n"
+	AUTHOR = "Autor"
+	DATE = "Fecha"
+	CATEGORY = "Categor\195\173a"
+	EMAIL = "E-mail"
+	WEBSITE = "Sitio de Web"
+	
+	ABOUT = "Sobre"
+	PRINT_ADDON_INFO = "Publica informaci\195\179n sobre addon"
+	
+	CATEGORIES = {
+		["Action Bars"] = "Barras de Acci\195\179n",
+		["Auction"] = "Subasta",
+		["Audio"] = "Audio",
+		["Battlegrounds/PvP"] = "Campos de Batalla/JcJ",
+		["Buffs"] = "Buffs",
+		["Chat/Communication"] = "Chat/Communicaci\195\179n",
+		["Druid"] = "Druida",
+		["Hunter"] = "Cazador",
+		["Mage"] = "Mago",
+		["Paladin"] = "Palad\195\173n",
+		["Priest"] = "Sacerdote",
+		["Rogue"] = "P\195\173caro",
+		["Shaman"] = "Cham\195\161n",
+		["Warlock"] = "Brujo",
+		["Warrior"] = "Guerrero",
+		["Healer"] = "Sanador",
+		["Tank"] = "Tanque",
+		["Caster"] = "Hechicero",
+		["Combat"] = "Combate",
+		["Compilations"] = "Compilaciones",
+		["Data Export"] = "Exporta de Datos",
+		["Development Tools"] = "Herramientas de Desarrollo",
+		["Guild"] = "Hermandad",
+		["Frame Modification"] = "Modificaci\195\179n del marco",
+		["Interface Enhancements"] = "Mejora de Interfaz",
+		["Inventory"] = "Inventario",
+		["Library"] = "Biblioteca",
+		["Map"] = "Mapa",
+		["Mail"] = "Correo",
+		["Miscellaneous"] = "Diverso",
+		["Quest"] = "Misi\195\179n",
+		["Raid"] = "Banda",
+		["Tradeskill"] = "Habilidad de Comercio", 
+		["UnitFrame"] = "Marco de Unidad", 
+	}
+else -- enUS
 	STANDBY = "|cffff5050(standby)|r"
 	
 	TITLE = "Title"
@@ -410,8 +410,8 @@ elseif GetLocale() == "ruRU" then
 	CREDITS = "Credits"
 	COMMANDS = "Commands"
 	
-	ABOUT = "About"
-	PRINT_ADDON_INFO = "Print out addon info"
+	ABOUT = "关于"
+	PRINT_ADDON_INFO = "打印插件信息"
 	
 	CATEGORIES = {
 		["Action Bars"] = "Action Bars",
