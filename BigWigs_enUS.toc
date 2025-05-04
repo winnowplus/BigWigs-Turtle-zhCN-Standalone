@@ -1,21 +1,21 @@
 ## Interface: 11200
 
-## Title: |cFFFF8080Relar|r Big Wigs |cff7fff7f30095|r |cffabd473Turtle-WoW|r
+## Title: |cFFFF8080Pepopo|r Big Wigs |cff7fff7f30110|r |cffabd473Turtle-WoW|r
 ## Title-zhCN: |cffabd473Turtle-WoW|r Big Wigs
 ## Notes: Boss Mods with Timer bars.
 ## Notes-esES: Módulos para Jefes con barras temporizadoras.
 ## Notes-zhCN: 团队首领战信息提示插件，带有计时条。
 ## Notes-zhTW: 團隊首領戰訊息提示插件，帶有計時條。
-## Author: Relar, Bethy, Tekkub Stoutwrithe, Ammo, Shyva, Rabbit, LYQ, Dorann, Hosq & Others
+## Author: Relar, Balake, Pepopo, Bethy, Tekkub Stoutwrithe, Ammo, Shyva, Rabbit, LYQ, Dorann, Hosq & Others
 ## Version: 2.0.0
-## X-Website: https://github.com/madScripting
+## X-Website: https://github.com/pepopo978/BigWigs/
 ## X-Category: Raid
 ## X-RelSite-WoWI: 5086
 ## X-RelSite-Curse: 4356
 ## X-AceForum: 1222
 ## X-FlySpray: 1
 
-## OptionalDeps: Ace2, FuBar, FuBarPlugin-2.0, Babble-2.2, CandyBar, CompostLib, DewdropLib, PaintChipsLib, TabletLib, SurfaceLib, Surfaces, MikScrollingBattleText, sct, SpellStatusLib, SpellCacheLib, GratuityLib, Deformat, SpecialEventsEmbed
+## OptionalDeps: Ace2, FuBar, FuBarPlugin-2.0, Babble-2.2, CandyBar, CompostLib, DewdropLib, PaintChipsLib, TabletLib, SurfaceLib, Surfaces, MikScrollingBattleText, sct, SpellStatusLib, SpellCacheLib, GratuityLib, Deformat, SpecialEventsEmbed, RosterLib
 ## X-Embeds: Ace2, FuBarPlugin-2.0, Babble-2.2, CandyBar, CompostLib, DewdropLib, PaintChipsLib, TabletLib, SurfaceLib
 
 ## SavedVariables: BigWigsDB, BigWigsFubarDB, BigWigsCommonAurasDB, BigWigsZombieFoodDB, BigWigsRespawnTimersDB, BigWigsContributeFlag
@@ -35,7 +35,7 @@ Libs\AceEvent-2.0\AceEvent-2.0.lua
 Libs\AceLocale-2.2\AceLocale-2.2.lua
 Libs\AceModuleCore-2.0\AceModuleCore-2.0.lua
 Libs\Babble-Boss-2.2\Babble-Boss-2.2.lua
-Libs\Babble-Spell-2.2\Babble-Spell-2.2.lua
+Libs\Babble-Spell-2.3\Babble-Spell-2.3.lua
 Libs\Babble-Zone-2.2\Babble-Zone-2.2.lua
 Libs\Dewdrop-2.0\Dewdrop-2.0.lua
 Libs\Tablet-2.0\Tablet-2.0.lua
@@ -46,8 +46,9 @@ Libs\Surface-1.0\Surface-1.0.lua
 Libs\Deformat-2.0\Deformat-2.0.lua
 Libs\Gratuity-2.0\Gratuity-2.0.lua
 Libs\SpellCache-1.0\SpellCache-1.0.lua
-Libs\SpellStatus-1.0\SpellStatus-1.0.lua
+Libs\SpellStatusV2-2.0\SpellStatusV2-2.0.lua
 Libs\SpecialEvents-Aura-2.0\SpecialEvents-Aura-2.0.lua
+Libs\RosterLib-2.0\RosterLib-2.0.lua
 
 LoadOnDemand.lua
 Core.lua
@@ -82,6 +83,8 @@ Plugins\FRBuffMacro.lua
 Plugins\Farclip.lua
 Plugins\FrostBlast.lua
 Plugins\Pulltimer.lua
+Plugins\CombatAnnouncement.lua
+Plugins\SpellRequests.lua
 
 Raids\ZG\Arlokk.lua
 Raids\ZG\Jeklik.lua
@@ -190,6 +193,7 @@ Raids\Naxxramas\Kelthuzad.lua
 Raids\Naxxramas\DeathknightCaptain.lua
 Raids\Naxxramas\LivingMonstrosity.lua
 Raids\Naxxramas\SpiderTrash.lua
+Raids\Naxxramas\ConstructTrash.lua
 Raids\Naxxramas\DeathknightCavalier.lua
 
 Raids\UBRS\Beast.lua
