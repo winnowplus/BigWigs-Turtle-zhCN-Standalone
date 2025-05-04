@@ -183,7 +183,7 @@ L:RegisterTranslations("zhCN", function() return {
     msg_lowHp = "萨菲隆血量低于10% - 不再有空中阶段！",
 	
 	trigger_parryYou = "你发起了攻击。萨菲隆招架住了。", --CHAT_MSG_COMBAT_SELF_MISSES
-    msg_parryYou = "你的攻击被萨菲隆招架了 - 别再打坦克了，笨蛋！",
+    msg_parryYou = "你的攻击被萨菲隆招架了 - 别再当坦克了，笨蛋！",
 } end )
 
 local timer = {

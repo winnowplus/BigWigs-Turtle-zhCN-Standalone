@@ -73,6 +73,7 @@ L:RegisterTranslations("enUS", function()
 		["Naxxramas"] = "Naxxramas",
 		["Emerald Sanctum"] = "EmeraldSanctum",
 		["Karazhan"] = "Karazhan",
+		["Tower of Karazhan"] = "Karazhan",
 		["Dire Maul"] = "DireMaul",
 		["Blackrock Spire"] = "BlackrockSpire",
 		["The Black Morass"] = "BlackMorass",
@@ -349,6 +350,7 @@ L:RegisterTranslations("zhCN", function()
 	["Naxxramas"] = "纳克萨玛斯",
 	["Emerald Sanctum"] = "翡翠圣境",
 	["Karazhan"] = "卡拉赞",
+	["Tower of Karazhan"] = "卡拉赞之塔",
 	["Dire Maul"] = "厄运之槌",
 	["Blackrock Spire"] = "黑石塔上层",
 	["The Black Morass"] = "黑色沼泽",
@@ -568,6 +570,7 @@ function BigWigs.modulePrototype:Victory()
 	end
 end
 function BigWigs.modulePrototype:Disable()
+	self.castEventUnits = nil
 	self:Disengage()
 	self.core:ToggleModuleActive(self, false)
 end
@@ -771,6 +774,47 @@ end
 -- test function
 function BigWigs.modulePrototype:Test()
 	BigWigs:Print("模块未定义测试 " .. self:ToString())
+end
+
+if SUPERWOW_STRING then
+	local testGuids = {
+		["0xF13000F1F3276A33"] = "Keeper Gnarlmoon",
+	}
+
+	function BigWigs.modulePrototype:RegisterUnitCastEvent()
+		if not self:IsEventRegistered("UNIT_CASTEVENT") then
+			self:RegisterEvent("UNIT_CASTEVENT", function(casterGuid, targetGuid, eventType, spellId, castTime)
+				if self.castEventUnits then
+					local unitName = UnitName(casterGuid)
+
+					if not unitName or unitName == "Unknown" then
+						if testGuids[casterGuid] then
+							unitName = testGuids[casterGuid]
+						end
+					end
+
+					if unitName and self.castEventUnits[unitName] then
+						local callback = self.castEventUnits[unitName]
+						if type(callback) == "function" then
+							callback(self, targetGuid, eventType, spellId, castTime)
+						end
+					end
+				end
+			end)
+		end
+	end
+
+	function BigWigs.modulePrototype:RegisterCastEventsForUnitName(unitName, callback)
+		self:RegisterUnitCastEvent()
+
+		if not self.castEventUnits then
+			self.castEventUnits = {}
+		end
+
+		if not self.castEventUnits[unitName] then
+			self.castEventUnits[unitName] = callback
+		end
+	end
 end
 
 ------------------------------

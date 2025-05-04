@@ -505,6 +505,11 @@ BabbleBoss:RegisterTranslations("enUS", function()
         ["Lava Surger"] = true,
         ["Gozzo"] = true,
         ["Liang"] = true,
+		["Keeper Gnarlmoon"] = true,
+		["Ley-Watcher Incantagos"] = true,
+		["Anomalus"] = true,
+		["Echo of Medivh"] = true,
+		["King"] = true,
 	}
 end)
 
@@ -2113,6 +2118,11 @@ BabbleBoss:RegisterTranslations("zhCN", function()
         ["Lava Surger"] = "熔岩奔腾者",
         ["Gozzo"] = "古祖",
         ["Liang"] = "梁",
+		["Keeper Gnarlmoon"] = "守护者纳尔穆恩",
+		["Ley-Watcher Incantagos"] = "魔网观察者因塔苟斯",
+		["Anomalus"] = "阿诺玛鲁斯",
+		["Echo of Medivh"] = "麦迪文的回响",
+		["King"] = "国王",
 	}
 end)
 

@@ -58,7 +58,7 @@ L:RegisterTranslations("enUS", function() return {
 	trigger_3sec = "%s overloads!",--CHAT_MSG_RAID_BOSS_EMOTE
 	bar_phase2 = "塔迪乌斯激活",
 	msg_phase2 = "第二阶段",
-	msg_positionReminder = "- - - - -  塔迪乌斯  + + + + +",
+	msg_positionReminder = "+ + + + +  塔迪乌斯  - - - - -",
 	
 	trigger_enrage = "Thaddius gains Berserk.", --CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS
 	bar_enrage = "激怒",
@@ -132,7 +132,7 @@ L:RegisterTranslations("zhCN", function() return {
 	trigger_3sec = "%s 超载！",--CHAT_MSG_RAID_BOSS_EMOTE
 	bar_phase2 = "塔迪乌斯激活",
 	msg_phase2 = "第二阶段",
-	msg_positionReminder = "- - - - -  塔迪乌斯  + + + + +",
+	msg_positionReminder = "+ + + + +  塔迪乌斯  - - - - -",
 	
 	trigger_enrage = "塔迪乌斯获得了狂暴的效果。", --CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS
 	bar_enrage = "狂暴",
