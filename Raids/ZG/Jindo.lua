@@ -1,7 +1,7 @@
 
 local module, L = BigWigs:ModuleDeclaration("Jin'do the Hexxer", "Zul'Gurub")
 local BC = AceLibrary("Babble-Class-2.2")
-local bsbrainwashtotem = AceLibrary("Babble-Spell-2.2")["Brain Wash Totem"]
+local bsbrainwashtotem = AceLibrary("Babble-Spell-2.2")["Summon Brain Wash Totem"]
 local bspowerfulhealingward = AceLibrary("Babble-Spell-2.2")["Powerful Healing Ward"]
 local bbjindothegexxer = AceLibrary("Babble-Boss-2.2")["Jin'do the Hexxer"]
 local bbshadeofjindo = AceLibrary("Babble-Boss-2.2")["Shade of Jin'do"]
