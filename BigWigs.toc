@@ -1,10 +1,9 @@
 ## Interface: 11200
-## Title: |cFFFF8080Pepopo|r Big Wigs |cff7fff7f30127|r |cffabd473Turtle-WoW|r
-## Title-zhCN: |cffabd473Turtle-WoW|r Big Wigs
-## Notes: Boss Mods with Timer bars.
-## Notes-esES: Módulos para Jefes con barras temporizadoras.
-## Notes-zhCN: 团队首领战信息提示插件，带有计时条。
-## Notes-zhTW: 團隊首領戰訊息提示插件，帶有計時條。
+## Title: |cff33ffcc[团队工具]|RBOSS技能预警|cffff1450[2.15]|R
+## Notes:|CFFDD66DDBigWigs|R 预警并提示BOSS技能
+## Title-zhCN: |cff33ffcc[团队工具]|RBOSS技能预警|cffff1450[2.15]|R
+## Notes-zhCN:|CFFDD66DDBigWigs|R 预警并提示BOSS技能
+## X-Repple: 团队
 ## Author: Relar, Bethy, Tekkub Stoutwrithe, Ammo, Shyva, Rabbit, LYQ, Dorann, Hosq, Wind, Sunelegy
 ## Version: 2.15
 ## X-Website: https://github.com/madScripting
@@ -14,7 +13,7 @@
 ## X-AceForum: 1222
 ## X-FlySpray: 1
 
-## OptionalDeps: Ace2, FuBar, FuBarPlugin-2.0, Babble-2.2, CandyBar, CompostLib, DewdropLib, PaintChipsLib, TabletLib, SurfaceLib, Surfaces, MikScrollingBattleText, sct, SpellStatusLib, SpellCacheLib, GratuityLib, Deformat, SpecialEventsEmbed, RosterLib
+## OptionalDeps: Ace2, FuBar, FuBarPlugin-2.0, Babble-2.2, CandyBar, CompostLib, DewdropLib, PaintChipsLib, TabletLib, SurfaceLib, Surfaces, MikScrollingBattleText, sct, SpellStatusLib, SpellCacheLib, GratuityLib, Deformat, SpecialEventsEmbed
 ## X-Embeds: Ace2, FuBarPlugin-2.0, Babble-2.2, CandyBar, CompostLib, DewdropLib, PaintChipsLib, TabletLib, SurfaceLib
 
 ## SavedVariables: BigWigsDB, BigWigsFubarDB, BigWigsCommonAurasDB, BigWigsZombieFoodDB, BigWigsRespawnTimersDB, BigWigsContributeFlag
