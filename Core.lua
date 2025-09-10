@@ -430,7 +430,8 @@ BigWigs.cmdtable = { type = "group", handler = BigWigs, args = {
 } }
 BigWigs:RegisterChatCommand({ "/bw", "/BigWigs" }, BigWigs.cmdtable)
 BigWigs.debugFrame = ChatFrame1
-BigWigs.revision = 30095
+BigWigs.revision = 30113
+BigWigs.markUnitsWhenNotRaidLeader = false -- too many people marking causes issues, can turn on if needed
 
 function BigWigs:EditLayout()
 	BigWigsBars:BigWigs_ShowAnchors()
@@ -534,6 +535,22 @@ function BigWigs.modulePrototype:Engage()
 
 		BigWigsBossRecords:StartBossfight(self)
 
+		self.storedPlayerMarks = {}
+
+		-- store initial marks for disengage
+		self.initialPlayerMarks = {}
+		self.recentlyUsedMarks = {}
+
+		if IsRaidLeader() or BigWigs.markUnitsWhenNotRaidLeader then
+			for i = 1, GetNumRaidMembers() do
+				local playerUnit = "raid" .. i
+				local playerName = UnitName(playerUnit)
+				if playerName then
+					self.initialPlayerMarks[playerName] = GetRaidTargetIndex(playerUnit) or 0
+				end
+			end
+		end
+
 		self:OnEngage()
 	end
 end
@@ -552,6 +569,15 @@ function BigWigs.modulePrototype:Disengage()
 		BigWigsBars:BigWigs_HideCounterBars()
 
 		self:RemoveProximity()
+
+		if self.initialPlayerMarks then
+			for player in pairs(self.initialPlayerMarks) do
+				self:RestoreInitialRaidTargetForPlayer(player)
+			end
+			self.initialPlayerMarks = {}
+		end
+
+		self.recentlyUsedMarks = {}
 
 		self:OnDisengage()
 	end
@@ -605,6 +631,134 @@ function BigWigs.modulePrototype:SendBossDeathSync()
 		self:Sync(self:GetBossDeathSync() .. " " .. self.bossSync)
 	end
 end
+
+-- Add to BigWigs.modulePrototype section in Core.lua
+function BigWigs.modulePrototype:SetRaidTargetForPlayer(player, mark)
+	if not IsRaidLeader() and not BigWigs.markUnitsWhenNotRaidLeader then
+		return false
+	end
+
+	local playerUnit = nil
+	for i = 1, GetNumRaidMembers() do
+		if UnitName("raid" .. i) == player then
+			playerUnit = "raid" .. i
+			break
+		end
+	end
+
+	if not playerUnit then
+		return false
+	end
+
+	-- Store previous mark before changing it
+	local previousMark = GetRaidTargetIndex(playerUnit) or 0
+	if not self.storedPlayerMarks then
+		self.storedPlayerMarks = {}
+	end
+	self.storedPlayerMarks[player] = previousMark
+
+	SetRaidTarget(playerUnit, mark)
+	return true
+end
+
+function BigWigs.modulePrototype:GetAvailableRaidMark(excludeMarks, reverse)
+	excludeMarks = excludeMarks or {}
+	local usedMarks = {}
+	local currentTime = GetTime()
+
+	-- Initialize recentlyUsedMarks if needed
+	if not self.recentlyUsedMarks then
+		self.recentlyUsedMarks = {}
+	end
+
+	-- Mark existing raid targets as used
+	for i = 1, GetNumRaidMembers() do
+		local mark = GetRaidTargetIndex("raid" .. i)
+		if mark then
+			usedMarks[mark] = true
+		end
+	end
+
+	-- Add excluded marks to used marks
+	for _, mark in pairs(excludeMarks) do
+		usedMarks[mark] = true
+	end
+
+	-- Add recently used marks (within the last second) to used marks
+	for mark, timestamp in pairs(self.recentlyUsedMarks) do
+		if currentTime - timestamp < 1 then
+			usedMarks[mark] = true
+		end
+	end
+
+	local start, stop, step = 8, 1, -1
+	if reverse then start, stop, step = 1, 8, 1 end
+
+	-- Find first available mark (prioritizing skull/8, then down to 1)
+	for i = start, stop, step do
+		if not usedMarks[i] then
+			-- Record this mark as recently used with current timestamp
+			self.recentlyUsedMarks[i] = currentTime
+			return i
+		end
+	end
+
+	return nil -- No marks available
+end
+
+function BigWigs.modulePrototype:RestorePreviousRaidTargetForPlayer(player)
+	if not IsRaidLeader() and not BigWigs.markUnitsWhenNotRaidLeader then
+		return false
+	end
+
+	if not self.storedPlayerMarks or not self.storedPlayerMarks[player] then
+		return false
+	end
+
+	local playerUnit = nil
+	for i = 1, GetNumRaidMembers() do
+		if UnitName("raid" .. i) == player then
+			playerUnit = "raid" .. i
+			break
+		end
+	end
+
+	if not playerUnit then
+		return false
+	end
+
+	SetRaidTarget(playerUnit, self.storedPlayerMarks[player])
+	self.storedPlayerMarks[player] = nil
+
+	return true
+end
+
+function BigWigs.modulePrototype:RestoreInitialRaidTargetForPlayer(player)
+	if not IsRaidLeader() and not BigWigs.markUnitsWhenNotRaidLeader then
+		return false
+	end
+
+	if not self.initialPlayerMarks or not self.initialPlayerMarks[player] then
+		return false
+	end
+
+	local playerUnit = nil
+	for i = 1, GetNumRaidMembers() do
+		if UnitName("raid" .. i) == player then
+			playerUnit = "raid" .. i
+			break
+		end
+	end
+
+	if not playerUnit then
+		return false
+	end
+
+	SetRaidTarget(playerUnit, self.initialPlayerMarks[player])
+
+	return true
+end
+
 
 -- event handler
 local yellTriggers = {} -- [i] = {yell, bossmod}
@@ -752,8 +906,18 @@ function BigWigs:CheckForWipe(module)
 		end
 	end
 end
+
 function BigWigs.modulePrototype:CheckForWipe()
 	BigWigs:CheckForWipe(self)
+end
+
+function BigWigs.modulePrototype:OnFriendlyDeath(msg)
+end
+
+-- don't override
+function BigWigs.modulePrototype:CHAT_MSG_COMBAT_FRIENDLY_DEATH(msg)
+	self:OnFriendlyDeath(msg)
+	self:CheckForWipe()
 end
 
 function BigWigs:CheckForBossDeath(msg, module)
@@ -763,8 +927,18 @@ function BigWigs:CheckForBossDeath(msg, module)
 		end
 	end
 end
+
 function BigWigs.modulePrototype:CheckForBossDeath(msg)
 	BigWigs:CheckForBossDeath(msg, self)
+end
+
+function BigWigs.modulePrototype:OnEnemyDeath(msg)
+end
+
+-- don't override
+function BigWigs.modulePrototype:CHAT_MSG_COMBAT_HOSTILE_DEATH(msg)
+	self:OnEnemyDeath(msg)
+	self:CheckForBossDeath(msg)
 end
 
 -- override
@@ -796,7 +970,12 @@ if SUPERWOW_STRING then
 					if unitName and self.castEventUnits[unitName] then
 						local callback = self.castEventUnits[unitName]
 						if type(callback) == "function" then
-							callback(self, targetGuid, eventType, spellId, castTime)
+							callback(self, casterGuid, targetGuid, eventType, spellId, castTime)
+						elseif type(callback) == "string" and type(self[callback]) == "function" then
+							self[callback](self, casterGuid, targetGuid, eventType, spellId, castTime)
+						else
+							DEFAULT_CHAT_FRAME:AddMessage("Invalid callback for unit " .. unitName)
+							self.castEventUnits[unitName] = nil
 						end
 					end
 				end

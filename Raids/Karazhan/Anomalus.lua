@@ -157,8 +157,6 @@ function module:OnEnable()
 	self:ThrottleSync(3, syncName.manaboundStrikeFade)
 	self:ThrottleSync(3, syncName.arcaneDampening)
 	self:ThrottleSync(3, syncName.arcaneDampeningFade)
-
-	self:UpdateManaboundStatusFrame()
 end
 
 function module:OnSetup()
@@ -172,18 +170,6 @@ function module:OnEngage()
 
 	if self.db.profile.arcaneoverload then
 		self:Bar(L["bar_arcaneOverload"], timer.arcaneOverload[arcaneOverloadCount], icon.arcaneOverload)
-	end
-
-	if self.db.profile.manaboundframe then
-		self:ScheduleRepeatingEvent("UpdateManaboundStatusFrame", self.UpdateManaboundStatusFrame, 1, self)
-	end
-end
-
-function module:OnDisengage()
-	self:CancelScheduledEvent("UpdateManaboundStatusFrame")
-
-	if self.manaboundStatusFrame then
-		self.manaboundStatusFrame:Hide()
 	end
 end
 
@@ -273,7 +259,7 @@ function module:BigWigs_RecvSync(sync, rest, nick)
 	elseif sync == syncName.arcanePrison and rest then
 		self:ArcanePrison(rest)
 	elseif string.find(sync, syncName.manaboundStrike) and rest then
-		local _, _, player, count = string.find(rest, "([^%s]+) (%d+)")
+		local _, _, player, count = string.find(rest, "([^%s]+)(%d+)")
 		if player and count then
 			self:ManaboundStrike(player, count)
 		end
@@ -335,7 +321,6 @@ function module:ManaboundStrike(player, count)
 			self:Bar(L["bar_manaboundExpire"], timer.manaboundDuration, icon.manaboundExpire)
 		end
 
-		self:UpdateManaboundStatusFrame()
 	end
 end
 
@@ -349,7 +334,6 @@ function module:ManaboundStrikeFade(player)
 			self:RemoveBar(L["bar_manaboundExpire"])
 		end
 
-		self:UpdateManaboundStatusFrame()
 	end
 end
 
@@ -423,144 +407,6 @@ function module:RemoveDampenedPlayerMark(player)
 	end
 
 	dampenedPlayers[player] = nil
-end
-
-function module:UpdateManaboundStatusFrame()
-	if not self.db.profile.manaboundframe then
-		if self.manaboundStatusFrame then
-			self.manaboundStatusFrame:Hide()
-		end
-		return
-	end
-
-	-- Create frame if needed
-	if not self.manaboundStatusFrame then
-		self.manaboundStatusFrame = CreateFrame("Frame", "AnomalusManaboundFrame", UIParent)
-		self.manaboundStatusFrame.module = self
-		self.manaboundStatusFrame:SetWidth(200)
-		self.manaboundStatusFrame:SetHeight(120)
-		self.manaboundStatusFrame:ClearAllPoints()
-		local s = self.manaboundStatusFrame:GetEffectiveScale()
-		self.manaboundStatusFrame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT",
-				(self.db.profile.manaboundframeposx or 100) / s,
-				(self.db.profile.manaboundframeposy or 300) / s)
-		self.manaboundStatusFrame:SetBackdrop({
-			bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-			edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
-			tile = true,
-			tileSize = 16,
-			edgeSize = 16,
-			insets = { left = 8, right = 8, top = 8, bottom = 8 }
-		})
-		self.manaboundStatusFrame:SetBackdropColor(0, 0, 0, 1)
-
-		-- Allow dragging
-		self.manaboundStatusFrame:SetMovable(true)
-		self.manaboundStatusFrame:EnableMouse(true)
-		self.manaboundStatusFrame:RegisterForDrag("LeftButton")
-		self.manaboundStatusFrame:SetScript("OnDragStart", function()
-			this:StartMoving()
-		end)
-		self.manaboundStatusFrame:SetScript("OnDragStop", function()
-			this:StopMovingOrSizing()
-			local scale = this:GetEffectiveScale()
-			this.module.db.profile.manaboundframeposx = this:GetLeft() * scale
-			this.module.db.profile.manaboundframeposy = this:GetTop() * scale
-		end)
-
-		-- Header - Column labels
-		self.manaboundStatusFrame.header = self.manaboundStatusFrame:CreateFontString(nil, "ARTWORK")
-		self.manaboundStatusFrame.header:SetFont("Fonts\\FRIZQT__.TTF", 10, "OUTLINE")
-		self.manaboundStatusFrame.header:SetPoint("TOPLEFT", self.manaboundStatusFrame, "TOPLEFT", 10, -10)
-		self.manaboundStatusFrame.header:SetText("     计时    |    玩家姓名    |    层数     ")
-
-		-- Create player lines (will be populated dynamically)
-		self.manaboundStatusFrame.lines = {}
-		for i = 1, maxManaboundPlayers do
-			-- Support up to maxManaboundPlayers players
-			local line = {}
-
-			-- Timer column
-			line.timer = self.manaboundStatusFrame:CreateFontString(nil, "ARTWORK")
-			line.timer:SetFont("Fonts\\FRIZQT__.TTF", 9)
-			line.timer:SetPoint("TOPLEFT", self.manaboundStatusFrame, "TOPLEFT", 10, -10 - (i * 15))
-			line.timer:SetWidth(40)
-			line.timer:SetJustifyH("LEFT")
-
-			-- Player name column
-			line.player = self.manaboundStatusFrame:CreateFontString(nil, "ARTWORK")
-			line.player:SetFont("Fonts\\FRIZQT__.TTF", 9)
-			line.player:SetPoint("LEFT", line.timer, "RIGHT", 10, 0)
-			line.player:SetWidth(80)
-			line.player:SetJustifyH("LEFT")
-
-			-- Stack count column
-			line.stacks = self.manaboundStatusFrame:CreateFontString(nil, "ARTWORK")
-			line.stacks:SetFont("Fonts\\FRIZQT__.TTF", 9)
-			line.stacks:SetPoint("LEFT", line.player, "RIGHT", 10, 0)
-			line.stacks:SetWidth(30)
-			line.stacks:SetJustifyH("CENTER")
-
-			self.manaboundStatusFrame.lines[i] = line
-		end
-	end
-
-	self.manaboundStatusFrame:Show()
-
-	-- Update player data in the frame
-	local lineIndex = 1
-	local now = GetTime()
-
-	for player, data in pairs(manaboundStrikesPlayers) do
-		if lineIndex <= maxManaboundPlayers then
-			-- Max maxManaboundPlayers players shown
-			local line = self.manaboundStatusFrame.lines[lineIndex]
-
-			local timeLeft = math.max(0, data.expires - now)
-
-			-- Set the columns in the new format
-			line.timer:SetText(string.format("%.0f", timeLeft))
-			line.player:SetText(player)
-			line.stacks:SetText(data.count)
-
-			-- Color based on stack count
-			if data.count >= 8 then
-				line.stacks:SetTextColor(1, 0, 0) -- Red for high stacks
-			elseif data.count >= 5 then
-				line.stacks:SetTextColor(1, 0.5, 0) -- Orange for medium stacks
-			else
-				line.stacks:SetTextColor(1, 1, 1) -- White for low stacks
-			end
-
-			-- Color timer based on time remaining
-			if timeLeft < 5 then
-				line.timer:SetTextColor(0, 1, 0) -- Green for about to expire
-			else
-				line.timer:SetTextColor(1, 1, 1) -- White for normal
-			end
-
-			lineIndex = lineIndex + 1
-		end
-	end
-
-	-- Hide unused lines
-	for i = lineIndex, maxManaboundPlayers do
-		local line = self.manaboundStatusFrame.lines[i]
-		if line then
-			line.timer:SetText("")
-			line.player:SetText("")
-			line.stacks:SetText("")
-		end
-	end
-
-	-- Adjust frame height based on number of visible entries
-	local numEntries = 0
-	for _ in pairs(manaboundStrikesPlayers) do
-		numEntries = numEntries + 1
-	end
-
-	local newHeight = math.max(40, 25 + (numEntries * 17))
-	self.manaboundStatusFrame:SetHeight(newHeight)
 end
 
 function module:Test()

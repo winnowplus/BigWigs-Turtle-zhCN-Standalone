@@ -214,7 +214,7 @@ L:RegisterTranslations("zhCN", function() return {
 		--timer for mobs spawn starts when?
     bar_mobsSpawn = "小怪刷新",
 	
-	trigger_destroyEggCast = "Razorgore the Untamed begins to cast Destroy Egg\.", --CHAT_MSG_SPELL_FRIENDLYPLAYER_BUFF
+	trigger_destroyEggCast = "施放摧毁蛋", --CHAT_MSG_SPELL_FRIENDLYPLAYER_BUFF
     bar_destroyEggCast = "正在摧毁龙蛋",
     bar_destroyEggCd = "摧毁龙蛋冷却",
 	
@@ -275,8 +275,8 @@ local timer = {
 	orb = 90,
 	mindExhaustion = 60,
 	
-	eggCast = 3,
-	eggCd = 10,
+	eggCast = 0.1,
+	eggCd = 7,
 	
 	volleyFirstCd = 10,
 	volleyCd = {14,16.5}, -- {16,18.5} - 2sec cast, saw 17.632 and 18.271
@@ -469,6 +469,11 @@ end
 function module:CHAT_MSG_MONSTER_EMOTE(msg)
 	if string.find(msg, L["trigger_phase3"]) then
 		self:Sync(syncName.phase3)
+		
+	elseif string.find(msg, L["trigger_destroyEggCast"]) then
+		self:Sync(syncName.destroyEggCast)
+		self:CancelScheduledEvent("Razorgore_DestroyEgg")
+		self:ScheduleEvent("Razorgore_DestroyEgg", self.Razorgore_DestroyEgg, 0.1, self)
 	end
 end
 
@@ -505,11 +510,11 @@ function module:Event(msg)
 		
 		
 --phase 2
-	elseif msg == L["trigger_destroyEggCast"] then
-		self:Sync(syncName.destroyEggCast)
+--	elseif string.find(msg, L["trigger_destroyEggCast"]) then
+--		self:Sync(syncName.destroyEggCast)
 		
-		self:CancelScheduledEvent("Razorgore_DestroyEgg")
-		self:ScheduleEvent("Razorgore_DestroyEgg", self.Razorgore_DestroyEgg, 3, self)
+--		self:CancelScheduledEvent("Razorgore_DestroyEgg")
+--		self:ScheduleEvent("Razorgore_DestroyEgg", self.Razorgore_DestroyEgg, 3, self)
 		
 	
 	

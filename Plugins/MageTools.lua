@@ -249,12 +249,12 @@ L:RegisterTranslations("zhCN", function()
         ["IgnitePyroRequestTrigger"] = "触发火焰请求",
         ["IgnitePyroRequestTriggerDesc"] = "/bw 额外->法师助手->触发火焰请求",
 
-		scorch_afflict_test = "^(.+)受到了痛苦诅咒效果的影响(.*)", -- for stacks 2-5 will be "Fire Vulnerability (2)".
-		scorch_gains_test = "^(.+)获得了痛苦诅咒效果(.*)", -- for stacks 2-5 will be "Fire Vulnerability (2)".
+		scorch_afflict_test = "^(.+)受到了火焰易伤效果的影响(.*)", -- for stacks 2-5 will be "Fire Vulnerability (2)".
+		scorch_gains_test = "^(.+)获得了火焰易伤效果(.*)", -- for stacks 2-5 will be "Fire Vulnerability (2)".
 		scorch_test = ".+的灼烧(.+)(.+)造成", --.+ Scorch (.+)s (.+) for
-		scorch_fades_test = "痛苦诅咒效果从(.+)身上消失。",
+		scorch_fades_test = "火焰易伤效果从(.+)身上消失。",
 		scorch_resist_test = "(.+)的灼烧被(.+)抵抗了。",
-		fire_vuln_resist_test = "(.+)的痛苦诅咒被(.+)抵抗了。", -- Scorch can hit but fire vulnerability can resist independently
+		fire_vuln_resist_test = "(.+)的火焰易伤被(.+)抵抗了。", -- Scorch can hit but fire vulnerability can resist independently
 
 		ignite_afflict_test = "^(.+)受到了点燃效果的影响(.*)", -- for stacks 2-5 will be "Ignite (2)".
 		ignite_gains_test = "^(.+)获得了点燃效果(.*)", -- for stacks 2-5 will be "Ignite (2)".

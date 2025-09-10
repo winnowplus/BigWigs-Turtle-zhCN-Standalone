@@ -1,13 +1,12 @@
 ## Interface: 11200
-
-## Title: |cFFFF8080Relar|r Big Wigs |cff7fff7f30095|r |cffabd473Turtle-WoW|r
+## Title: |cFFFF8080Pepopo|r Big Wigs |cff7fff7f30127|r |cffabd473Turtle-WoW|r
 ## Title-zhCN: |cffabd473Turtle-WoW|r Big Wigs
 ## Notes: Boss Mods with Timer bars.
 ## Notes-esES: Módulos para Jefes con barras temporizadoras.
 ## Notes-zhCN: 团队首领战信息提示插件，带有计时条。
 ## Notes-zhTW: 團隊首領戰訊息提示插件，帶有計時條。
-## Author: Relar, Bethy, Tekkub Stoutwrithe, Ammo, Shyva, Rabbit, LYQ, Dorann, Hosq & Others
-## Version: 2.0.0
+## Author: Relar, Bethy, Tekkub Stoutwrithe, Ammo, Shyva, Rabbit, LYQ, Dorann, Hosq, Wind, Sunelegy
+## Version: 2.15
 ## X-Website: https://github.com/madScripting
 ## X-Category: Raid
 ## X-RelSite-WoWI: 5086
@@ -15,7 +14,7 @@
 ## X-AceForum: 1222
 ## X-FlySpray: 1
 
-## OptionalDeps: Ace2, FuBar, FuBarPlugin-2.0, Babble-2.2, CandyBar, CompostLib, DewdropLib, PaintChipsLib, TabletLib, SurfaceLib, Surfaces, MikScrollingBattleText, sct, SpellStatusLib, SpellCacheLib, GratuityLib, Deformat, SpecialEventsEmbed
+## OptionalDeps: Ace2, FuBar, FuBarPlugin-2.0, Babble-2.2, CandyBar, CompostLib, DewdropLib, PaintChipsLib, TabletLib, SurfaceLib, Surfaces, MikScrollingBattleText, sct, SpellStatusLib, SpellCacheLib, GratuityLib, Deformat, SpecialEventsEmbed, RosterLib
 ## X-Embeds: Ace2, FuBarPlugin-2.0, Babble-2.2, CandyBar, CompostLib, DewdropLib, PaintChipsLib, TabletLib, SurfaceLib
 
 ## SavedVariables: BigWigsDB, BigWigsFubarDB, BigWigsCommonAurasDB, BigWigsZombieFoodDB, BigWigsRespawnTimersDB, BigWigsContributeFlag
@@ -50,6 +49,7 @@ Libs\Gratuity-2.0\Gratuity-2.0.lua
 Libs\SpellCache-1.0\SpellCache-1.0.lua
 Libs\SpellStatus-1.0\SpellStatus-1.0.lua
 Libs\SE\SpecialEvents-Aura-2.0\SpecialEvents-Aura-2.0.xml
+Libs\RosterLib-2.0\RosterLib-2.0.lua
 
 LoadOnDemand.lua
 Core.lua
@@ -170,6 +170,8 @@ Raids\Other\Ostarius.lua
 Raids\Other\DrWeavil.lua
 Raids\Other\Atiesh.lua
 Raids\Other\Concavius.lua
+Raids\Other\KaraSay.lua
+Raids\Other\KaraFrame.xml
 
 Raids\Onyxia\Onyxia.lua
 
@@ -223,6 +225,16 @@ Raids\Karazhan\ClawlordHowlfang.lua
 Raids\Karazhan\Moroes.lua
 Raids\Karazhan\PhantomServant.lua
 Raids\Karazhan\DarkRiderChampion.lua
+
+Raids\Karazhan\KeeperGnarlmoon.lua
+Raids\Karazhan\Incantagos.lua
+Raids\Karazhan\Anomalus.lua
+Raids\Karazhan\ChessFight.lua
+Raids\Karazhan\EchoOfMedivh.lua
+Raids\Karazhan\Kruul.lua
+Raids\Karazhan\SanvTasdal.lua
+Raids\Karazhan\Rupturan.lua
+Raids\Karazhan\Mephistroth.lua
 
 Battlegrounds\AlteracValley.lua
 Battlegrounds\ArathiBasin.lua

@@ -43,8 +43,8 @@ L:RegisterTranslations("enUS", function()
 		-- msg_laststand = " Last Stand",
 		-- bar_laststand = " Last Stand",
 
-		-- msg_lifegivingGem = " Lifegiving Gem",
-		-- bar_lifegivingGem = " Lifegiving Gem",
+		-- msg_lifegivingGem = " Enlightened State",
+		-- bar_lifegivingGem = " Enlightened State",
 
 		-- msg_challengingShout = " Challenging Shout",
 		-- bar_challengingShout = " Challenging Shout",
@@ -471,9 +471,9 @@ BigWigsCommonAuras.consoleOptions = {
 		},
 		["lifegivinggem"] = {
 			type = "toggle",
-			name = BS["Lifegiving Gem"],
+			name = BS["Enlightened State"],
 			order = 12,
-			desc = string.format(L["Toggle %s display."], BS["Lifegiving Gem"]),
+			desc = string.format(L["Toggle %s display."], BS["Enlightened State"]),
 			get = function()
 				return BigWigsCommonAuras.db.profile.lifegivinggem
 			end,

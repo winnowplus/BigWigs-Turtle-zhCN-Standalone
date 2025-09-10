@@ -200,7 +200,7 @@ L:RegisterTranslations("zhCN", function() return {
 	-- Sunelegy，Wind汉化修复Turtle-WOW中文数据
 	-- Last update: 2024-06-22
     cmd = "Onyxia",
-    engage_trigger = "must leave my lair to feed",
+    engage_trigger = "必须离开巢穴去觅食",
 
     deepbreath_cmd = "deepbreath",
     deepbreath_name = "深呼吸警报",
@@ -226,14 +226,14 @@ L:RegisterTranslations("zhCN", function() return {
     onyfear_name = "低沉咆哮警报",
     onyfear_desc = "第三阶段低沉咆哮时进行警告",
 
-    deepbreath_trigger = "takes in a deep breath",
-    flamebreath_trigger = "Onyxia begins to cast Flame Breath\.",
-    wingbuffet_trigger = "Onyxia begins to cast Wing Buffet\.",
-    fireball_trigger = "Onyxia begins to cast Fireball.",
-    phase2_trigger = "from above",
-    phase3_trigger = "It seems you'll need another lesson",
-    fear_trigger = "Onyxia begins to cast Bellowing Roar\.",
-    fear_over_trigger = "Bellowing Roar",
+    deepbreath_trigger = "深吸了一口气",
+    flamebreath_trigger = "奥妮克希亚开始施放火息术。",
+    wingbuffet_trigger = "奥妮克希亚开始施放龙翼攻击。",
+    fireball_trigger = "奥妮克希亚开始施放火球术。",
+    phase2_trigger = "从上面把你们",
+    phase3_trigger = "看来你还需要再上一课",
+    fear_trigger = "奥妮克希亚开始施放低沉咆哮。",
+    fear_over_trigger = "低沉咆哮" ,
 
     warn1 = "深呼吸即将到来！",
     phase1text = "第一阶段",
@@ -245,7 +245,7 @@ L:RegisterTranslations("zhCN", function() return {
     deepbreath_cast = "深呼吸",
     flamebreath_cast = "烈焰吐息",
     wingbuffet_cast = "龙翼打击",
-	fireball_cast = "Fireball on %s",
+	fireball_cast = "火球目标 %s",
 } end )
 
 local fireballTarget = nil

@@ -426,7 +426,7 @@ function UnitHasAura(unit, aura)
 	while UnitDebuff(unit, i) do 
 		auratooltip:ClearLines()
 		auratooltip:SetUnitDebuff(unit, i)
-		if string.find(auratooltipTextLeft1:GetText(), aura) then
+		if auratooltipTextLeft1:GetText() and string.find(auratooltipTextLeft1:GetText(), aura) then
 			return true, i
 		end
 		i = i + 1
@@ -468,7 +468,7 @@ function MyBuff(aura)
 	while UnitBuff("player", i) do 
 		auratooltip:ClearLines()
 		auratooltip:SetUnitBuff("player", i)
-		if string.find(auratooltipTextLeft1:GetText(), aura) then
+		if auratooltipTextLeft1:GetText() and string.find(auratooltipTextLeft1:GetText(), aura) then
 			return true
 		end
 		i = i + 1
